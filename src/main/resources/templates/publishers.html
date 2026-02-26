@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publishers - Book Management System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="/images/logo.png" alt="BMS Logo" style="width: 60px; height: 60px;">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Dashboard</a></li>
+                <li><a href="/books" class="nav-link">Books</a></li>
+                <li><a href="/authors" class="nav-link">Authors</a></li>
+                <li><a href="/categories" class="nav-link">Categories</a></li>
+                <li><a href="/publishers" class="nav-link active">Publishers</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>Publishers Management</h1>
+                <button class="btn btn-primary" onclick="openPublisherModal()">+ Add New Publisher</button>
+            </header>
+
+            <!-- Search and Filter Section -->
+            <div class="filter-section">
+                <input type="text" id="searchInput" placeholder="Search publishers..." class="search-input">
+            </div>
+
+            <!-- Publishers Table -->
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="publishersTable">
+                        <tr>
+                            <td colspan="3" style="text-align: center; padding: 20px;">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Publisher Modal -->
+    <div id="publisherModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Publisher</h2>
+                <span class="close" onclick="closePublisherModal()">&times;</span>
+            </div>
+            <form id="publisherForm" onsubmit="savePublisher(event)">
+                <input type="hidden" id="publisherId">
+
+                <div class="form-group">
+                    <label for="publisherName">Name *</label>
+                    <input type="text" id="publisherName" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-success">Save Publisher</button>
+                    <button type="button" class="btn btn-secondary" onclick="closePublisherModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/publishers.js"></script>
+</body>
+</html>
