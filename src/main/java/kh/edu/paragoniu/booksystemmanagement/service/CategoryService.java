@@ -15,33 +15,35 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    // CRUD operations for Category
+    // 1. Add Category
     public Category createCategory(Category category) {
         return categoryRepository.save(category);
     }
 
+    // 2. Get All Categories
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
+    // 3. Get Category by ID
     public Optional<Category> getCategoryById(Integer categoryId) {
         return categoryRepository.findById(categoryId);
     }
 
+    // 4. Update Category
     public Category updateCategory(Integer categoryId, Category categoryDetails) {
         Optional<Category> existingCategory = categoryRepository.findById(categoryId);
         if (existingCategory.isPresent()) {
             Category category = existingCategory.get();
-            if (categoryDetails.getCategoryName() != null) {
-                category.setCategoryName(categoryDetails.getCategoryName());
-            }
-            if (categoryDetails.getDescription() != null) {
-                category.setDescription(categoryDetails.getDescription());
-            }
+            category.setCategoryName(categoryDetails.getCategoryName());
+            category.setDescription(categoryDetails.getDescription());
             return categoryRepository.save(category);
         }
         return null;
     }
 
+    // 5. Delete Category
     public boolean deleteCategory(Integer categoryId) {
         if (categoryRepository.existsById(categoryId)) {
             categoryRepository.deleteById(categoryId);
